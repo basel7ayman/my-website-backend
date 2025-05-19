@@ -10,6 +10,7 @@ import purchaseRoute from "./routes/purchaseCourse.route.js";
 import courseProgressRoute from "./routes/courseProgress.route.js";
 import quizRoute from "./routes/quiz.route.js";
 import gamificationRoute from "./routes/gamification.route.js";
+import recommendationRoute from "./routes/recommendationRoutes.js";
 
 dotenv.config({});
 
@@ -36,6 +37,7 @@ app.use("/api/v1/purchase", purchaseRoute);
 app.use("/api/v1/progress", courseProgressRoute);
 app.use("/api/v1/quizzes", quizRoute);
 app.use("/api/v1/gamification", gamificationRoute);
+app.use("/api/v1/recommendation", recommendationRoute);
  
 app.listen(PORT, () => {
     console.log(`Server listen at port ${PORT}`);
