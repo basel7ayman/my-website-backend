@@ -1,7 +1,6 @@
 import { Course } from "../models/course.model.js";
 import { Lecture } from "../models/lecture.model.js";
 import {deleteMediaFromCloudinary, deleteVideoFromCloudinary, uploadMedia} from "../utils/cloudinary.js";
-import { User } from "../models/user.model.js";
 
 export const createCourse = async (req,res) => {
     try {
@@ -337,10 +336,3 @@ export const togglePublishCourse = async (req,res) => {
         })
     }
 }
-
-export const enrollInCourse = async (req, res) => {
-  const { userId, courseId } = req.body;
-  await User.findByIdAndUpdate(userId, { $addToSet: { enrolledCourses: courseId } });
-  await Course.findByIdAndUpdate(courseId, { $addToSet: { enrolledStudents: userId } });
-  res.json({ success: true });
-};
