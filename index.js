@@ -25,8 +25,8 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use(cors({
-    origin: ["http://localhost:5173", "https://my-website-backend-lake.vercel.app/" , "https://basel7ayman.github.io/my-website-frontend/"],
-    credentials: true
+    origin:"http://localhost:5173",
+    credentials:true
 }));
  
 // apis
