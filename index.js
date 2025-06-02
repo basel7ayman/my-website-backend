@@ -2,15 +2,15 @@ import express from "express";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-import connectDB from "./api/database/db.js";
-import userRoute from "./api/routes/user.route.js";
-import courseRoute from "./api/routes/course.route.js";
-import mediaRoute from "./api/routes/media.route.js";
-import purchaseRoute from "./api/routes/purchaseCourse.route.js";
-import courseProgressRoute from "./api/routes/courseProgress.route.js";
-import quizRoute from "./api/routes/quiz.route.js";
-import gamificationRoute from "./api/routes/gamification.route.js";
-import recommendationRoute from "./api/routes/recommendationRoutes.js";
+import connectDB from "./database/db.js";
+import userRoute from "./routes/user.route.js";
+import courseRoute from "./routes/course.route.js";
+import mediaRoute from "./routes/media.route.js";
+import purchaseRoute from "./routes/purchaseCourse.route.js";
+import courseProgressRoute from "./routes/courseProgress.route.js";
+import quizRoute from "./routes/quiz.route.js";
+import gamificationRoute from "./routes/gamification.route.js";
+import recommendationRoute from "./routes/recommendationRoutes.js";
 
 
 dotenv.config({});
