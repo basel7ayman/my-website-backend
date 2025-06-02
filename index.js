@@ -29,7 +29,7 @@ app.use(cors({
     origin:"http://localhost:5173",
     credentials:true
 }));
- 
+
 // apis
 app.use("/api/v1/media", mediaRoute);
 app.use("/api/v1/user", userRoute);
@@ -43,6 +43,10 @@ app.use("/api/v1/recommendation", recommendationRoute);
 
 app.listen(PORT, () => {
     console.log(`Server listen at port ${PORT}`);
-})
+});
+
+app.get('/api/test', (req, res) => {
+    res.send('API is working!');
+});
 
 
