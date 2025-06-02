@@ -38,9 +38,13 @@ app.use("/api/v1/progress", courseProgressRoute);
 app.use("/api/v1/quizzes", quizRoute);
 app.use("/api/v1/gamification", gamificationRoute);
 app.use("/api/v1/recommendation", recommendationRoute);
+
+app.get('/', (req, res) => {
+    res.send('Backend working from Vercel!');
+  });
  
 app.listen(PORT, () => {
     console.log(`Server listen at port ${PORT}`);
 })
 
-
+module.exports = app;
