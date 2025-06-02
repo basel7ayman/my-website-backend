@@ -11,6 +11,7 @@ import courseProgressRoute from "./routes/courseProgress.route.js";
 import quizRoute from "./routes/quiz.route.js";
 import gamificationRoute from "./routes/gamification.route.js";
 import recommendationRoute from "./routes/recommendationRoutes.js";
+const serverless = require('serverless-http');
 
 dotenv.config({});
 
@@ -47,4 +48,4 @@ app.listen(PORT, () => {
     console.log(`Server listen at port ${PORT}`);
 })
 
-module.exports = app;
+module.exports.handler = serverless(app);
