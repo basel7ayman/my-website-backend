@@ -27,8 +27,7 @@ app.use(cookieParser());
 
 // CORS configuration
 const allowedOrigins = [
-    'https://basel7ayman.github.io/',
-    'http://localhost:5173'
+    'https://basel7ayman.github.io/'
 ];
 
 app.use(cors({
