@@ -85,28 +85,37 @@ export const logout = async (_,res) => {
         }) 
     }
 }
-export const getUserProfile = async (req,res) => {
+export const getUserProfile = async (req, res) => {
     try {
-        const userId = req.id;
-        const user = await User.findById(userId).select("-password").populate("enrolledCourses");
-        if(!user){
-            return res.status(404).json({
-                message:"Profile not found",
-                success:false
-            })
-        }
-        return res.status(200).json({
-            success:true,
-            user
-        })
+      const user = await User.findById(req.id)
+        .select("-password")
+        .populate("enrolledCourses");
+  
+      if (!user) {
+        return res.status(404).json({
+          success: false,
+          message: "User profile not found",
+        });
+      }
+  
+      return res.status(200).json({
+        success: true,
+        user: {
+          _id: user._id,
+          name: user.name,
+          email: user.email,
+          photoUrl: user.photoUrl || null,
+          enrolledCourses: user.enrolledCourses || [],
+        },
+      });
     } catch (error) {
-        console.log(error);
-        return res.status(500).json({
-            success:false,
-            message:"Failed to load user"
-        })
+      console.error("Profile Fetch Error:", error);
+      return res.status(500).json({
+        success: false,
+        message: "Failed to load user profile",
+      });
     }
-}
+  };
 export const updateProfile = async (req,res) => {
     try {
         const userId = req.id;
