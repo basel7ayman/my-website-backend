@@ -6,7 +6,7 @@ import { deleteMediaFromCloudinary, uploadMedia } from "../utils/cloudinary.js";
 export const register = async (req,res) => {
     try {
         
-        const {name, email, password} = req.body; // patel214
+        const {name, email, password, role} = req.body; // patel214
         if(!name || !email || !password){
             return res.status(400).json({
                 success:false,
@@ -21,14 +21,21 @@ export const register = async (req,res) => {
             })
         }
         const hashedPassword = await bcrypt.hash(password, 10);
-        await User.create({
+        const newUser = await User.create({
             name,
             email,
-            password:hashedPassword
+            password: hashedPassword,
+            role: role || "student" // Set role if provided, otherwise default to student
         });
         return res.status(201).json({
             success:true,
-            message:"Account created successfully."
+            message:"Account created successfully.",
+            user: {
+                _id: newUser._id,
+                name: newUser.name,
+                email: newUser.email,
+                role: newUser.role
+            }
         })
     } catch (error) {
         console.log(error);
@@ -62,6 +69,18 @@ export const login = async (req,res) => {
             });
         }
         generateToken(res, user, `Welcome back ${user.name}`);
+        
+        // Return user data along with the token
+        return res.status(200).json({
+            success: true,
+            message: `Welcome back ${user.name}`,
+            user: {
+                _id: user._id,
+                name: user.name,
+                email: user.email,
+                role: user.role
+            }
+        });
 
     } catch (error) {
         console.log(error);
