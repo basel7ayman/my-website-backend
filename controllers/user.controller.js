@@ -104,6 +104,7 @@ export const getUserProfile = async (req, res) => {
           _id: user._id,
           name: user.name,
           email: user.email,
+          role: user.role,
           photoUrl: user.photoUrl || null,
           enrolledCourses: user.enrolledCourses || [],
         },
